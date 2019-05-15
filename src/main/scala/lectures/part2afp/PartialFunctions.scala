@@ -5,18 +5,19 @@ object PartialFunctions extends App {
   val aFunction = (x: Int) => x + 1 // Function1[Int, Int] === Int => Int
 
   val aFussyFunction = (x: Int) =>
-    if(x==1) 42
-    else if(x ==2) 56
-    else if (x ==5) 999
+    if (x == 1) 42
+    else if (x == 2) 56
+    else if (x == 5) 999
     else throw new FunctionNotApplicableException
 
   class FunctionNotApplicableException extends RuntimeException
 
-  val aNiceFussyFunction = (x: Int) => x match {
-    case 1 => 42
-    case 2 => 56
-    case 5 => 999
-  }
+  val aNiceFussyFunction = (x: Int) =>
+    x match {
+      case 1 => 42
+      case 2 => 56
+      case 5 => 999
+    }
   // {1,2,5} => Int
 
   val aPartialFunction: PartialFunction[Int, Int] = {
@@ -51,7 +52,7 @@ object PartialFunctions extends App {
   }
 
   // HOFs accept partial function as well
-  val aMappedList = List(1,2,3).map {
+  val aMappedList = List(1, 2, 3).map {
     case 1 => 42
     case 2 => 78
     case 3 => 1000
@@ -63,14 +64,12 @@ object PartialFunctions extends App {
     Note: PF can only have ONE parameter type
    */
 
-
   /**
     * Excercises
     *
     * 1 - construct a PF instance yourself (anonymous class)
     * 2 - dumb chatbot as PF
     */
-
   // 1
 
   val aManualFussyFunction = new PartialFunction[Int, Int] {
@@ -81,13 +80,14 @@ object PartialFunctions extends App {
     }
 
     override def isDefinedAt(x: Int): Boolean =
-      x ==1 || x == 2 || x == 5
+      x == 1 || x == 2 || x == 5
   }
 
   //2
   val chatbot: PartialFunction[String, String] = {
     case "hello" => "Hi, my name is Hal9000"
-    case "goodbye" => "Onve your start talking to me , there is no return, human!"
+    case "goodbye" =>
+      "Onve your start talking to me , there is no return, human!"
     case "call mom" => "Unable to find your phone without your credit card"
   }
 //  scala.io.Source.stdin.getLines().foreach(line => println("you said: " + chatbot(line)))

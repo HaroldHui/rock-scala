@@ -4,7 +4,6 @@ import scala.annotation.tailrec
 
 object Recap extends App {
 
-
   val aCondition: Boolean = false
   val aConditionedVal = if (aCondition) 42 else 65
   // instructions vs expressions
@@ -23,8 +22,8 @@ object Recap extends App {
 
   //recursion: stack and tail
   @tailrec def factorial(n: Int, accumulator: Int): Int =
-    if (n<=0) accumulator
-    else factorial(n-1, n * accumulator)
+    if (n <= 0) accumulator
+    else factorial(n - 1, n * accumulator)
 
   // object orientation
   class Animal
@@ -76,18 +75,16 @@ object Recap extends App {
 
   incrementer(1)
 
-
   val anonymousIncrementer = (x: Int) => x + 1
 
-  List(1,3,3).map(anonymousIncrementer) // HOF
+  List(1, 3, 3).map(anonymousIncrementer) // HOF
   // map, flatMap, filter
 
   // for-comprehension
   val pairs = for {
-    num <- List(1,2,3) // if condition
-    char <- List('a','b','c')
+    num <- List(1, 2, 3) // if condition
+    char <- List('a', 'b', 'c')
   } yield num + "-" + char
-
 
   // Scala collections: Seqs, Arrays, Lists, Vectors, Maps, Tuples
   val aMap = Map(
@@ -113,6 +110,5 @@ object Recap extends App {
   }
 
   // all the patterns
-
 
 }

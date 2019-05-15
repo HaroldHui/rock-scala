@@ -16,7 +16,7 @@ object DarkSugars extends App {
     throw new RuntimeException
   }
 
-  List(1,2,3).map { x =>
+  List(1, 2, 3).map { x =>
     x + 1
   }
 
@@ -47,14 +47,14 @@ object DarkSugars extends App {
 
   // syntax sugar #3: The :: and #:: methods are special
   // method ending with :
-  val prependedList = 2 :: List(3,4)
+  val prependedList = 2 :: List(3, 4)
   // 2.::(List(3,4))
   // List(3,4).::(2)
   // ? !
 
   // scala spec: last char decides associativity of method
   1 :: 2 :: 3 :: List(4, 5)
-  List(4,5).::(3).::(2).::(1) // equivalent
+  List(4, 5).::(3).::(2).::(1) // equivalent
 
   class MyStream[T] {
     def -->:(value: T): MyStream[T] = this // actual implementation here
@@ -75,12 +75,11 @@ object DarkSugars extends App {
   val composite: Composite[Int, String] = ???
   val composite2: Int Composite String = ???
 
-  class -->[A,B]
+  class -->[A, B]
   val towards: Int --> String = ???
 
-
   // syntax sugar #6: update() is very special, much like apply()
-  val anArray = Array(1,2,3)
+  val anArray = Array(1, 2, 3)
   anArray(2) = 7 // rewritten to anArray.update(2, 7)
   // used in mutable collections
   // remember apply() AND update()

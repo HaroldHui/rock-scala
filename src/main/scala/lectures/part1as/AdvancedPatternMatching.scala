@@ -5,7 +5,7 @@ object AdvancedPatternMatching extends App {
   val numbers = List(1)
   val description = numbers match {
     case head :: Nil => println(s"the only elementis $head.")
-    case _ =>
+    case _           =>
   }
 
   /*
@@ -16,21 +16,20 @@ object AdvancedPatternMatching extends App {
     - some special magic like above
    */
 
-
   class Person(val name: String, val age: Int)
 
   object Person {
     def unapply(person: Person): Option[(String, Int)] =
-      if (person.age < 21 ) None
+      if (person.age < 21) None
       else Some((person.name, person.age))
 
     def unapply(age: Int): Option[String] =
-      Some(if (age<21) "minor" else "major")
+      Some(if (age < 21) "minor" else "major")
   }
 
   val bob = new Person("Bob", 25)
   val greeting = bob match {
-    case Person(n,a) => s"Hi, my name is $n and I am $a yo."
+    case Person(n, a) => s"Hi, my name is $n and I am $a yo."
   }
 
   println(greeting)
@@ -46,9 +45,9 @@ object AdvancedPatternMatching extends App {
    */
   val n: Int = 45
   val mathProperty = n match {
-    case x if x < 10 => "sigle digit"
-    case x if x %2 == 0 => "an even number"
-    case _ => "no property"
+    case x if x < 10     => "sigle digit"
+    case x if x % 2 == 0 => "an even number"
+    case _               => "no property"
   }
 
   object even {
@@ -61,9 +60,9 @@ object AdvancedPatternMatching extends App {
 
   val n2 = 12
   val mathProperty2 = n2 match {
-    case singleDigit()=> "sigle digit"
-    case even() => "an even number"
-    case _ => "no property"
+    case singleDigit() => "sigle digit"
+    case even()        => "an even number"
+    case _             => "no property"
   }
 
   println(mathProperty2)
@@ -89,7 +88,8 @@ object AdvancedPatternMatching extends App {
   }
 
   case object Empty extends MyList[Nothing]
-  case class Cons[+A](override val head: A, override val tail: MyList[A]) extends MyList[A]
+  case class Cons[+A](override val head: A, override val tail: MyList[A])
+      extends MyList[A]
 
   object MyList {
     def unapplySeq[A](list: MyList[A]): Option[Seq[A]] =
@@ -100,7 +100,7 @@ object AdvancedPatternMatching extends App {
   val myList: MyList[Int] = Cons(1, Cons(2, Cons(3, Empty)))
   val decomposed = myList match {
     case MyList(1, 2, _*) => "starting with 1,2"
-    case _ => "something else"
+    case _                => "something else"
   }
 
   println(decomposed)
@@ -110,7 +110,7 @@ object AdvancedPatternMatching extends App {
 
   abstract class Wrapper[T] {
     def isEmpty: Boolean
-    def get:T
+    def get: T
   }
 
   object PersonWrapper {
@@ -122,7 +122,7 @@ object AdvancedPatternMatching extends App {
 
   println(bob match {
     case PersonWrapper(n) => s"This person's name is $n"
-    case _ => "An alien"
+    case _                => "An alien"
   })
 
 }
